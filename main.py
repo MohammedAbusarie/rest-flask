@@ -22,10 +22,14 @@ def home():
 def login():
    if request.method == 'POST':
       #obj = request.form['yes']
-      jsonf=request.json
-      user_answers=jsonf["user_answers"]
-      model_answers=jsonf["model_answers"]
-      return jsonify(correct_answers(user_answers,model_answers))
+      try:
+        jsonf=request.json
+        user_answers=jsonf["user_answers"]
+        model_answers=jsonf["model_answers"]
+        return jsonify(correct_answers(user_answers,model_answers))
+      except Exception as e:
+        return e
+        
       
    else:
       #user = request.args.get('nm')
